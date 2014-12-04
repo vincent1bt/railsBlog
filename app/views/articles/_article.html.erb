@@ -1,0 +1,13 @@
+<%= div_for article do %>
+	<h3>
+		<p> <%= link_to article.title, article %>
+		creado hace <%= time_ago_in_words(article.created_at) %></p>
+		<% if article.owned_by? current_user %>
+			<span class="actions">
+				<%= link_to 'editar', edit_article_path(article) %>
+				<%= link_to 'eliminar', article, confirm: 'estas seguro?', method: :delete%>
+			</span>
+		<% end %>
+	</h3>
+	<%= simple_format article.body %>
+<% end %>
